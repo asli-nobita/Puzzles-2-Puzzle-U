@@ -8,7 +8,11 @@
     padding: 0; 
     margin: 0;
   } 
-
+  /* add a transition when the hidden menu opens and closes */ 
+  #menu {
+    transition: all 0.5s ease; 
+    z-index: 100;
+  }
 /* Hero Section and Navbar */
 	.icon {
 		height: 30px; 
@@ -72,4 +76,10 @@
   .carousel-control-next-icon {
     background-color: #333; /* Dark color for arrows */ 
     z-index: 10; 
+  } 
+  .carousel-item.active { 
+    display: flex; 
+    align-items: center; 
+    justify-content: center;
+    height: 24rem;
   }

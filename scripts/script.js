@@ -1,68 +1,82 @@
-const menuToggle = document.getElementById('menu-toggle');
-const menu = document.getElementById('menu');
+const express = require('express');
+const { MongoClient } = require('mongodb');
+const bodyParser = require('body-parser');
+const cors = require('cors');
 
-menuToggle.addEventListener('click', () => {
-    menu.classList.toggle('hidden');
+const app = express();
+app.use(cors());
+app.use(bodyParser.json());
+
+// MongoDB URI and Database Connection
+const url = 'mongodb://localhost:27017'; // or your MongoDB Atlas URI
+const dbName = 'puzzleApp';
+let db;
+
+// MongoDB connection
+MongoClient.connect(url, { useNewUrlParser: true, useUnifiedTopology: true }, (err, client) => {
+  if (err) throw err;
+  db = client.db(dbName);
+  console.log('Connected to MongoDB');
 });
 
-// Placeholder for storing user data
-let userData = {};
+// Submit response API
+app.post('/submit-response', async (req, res) => {
+  const { name, email, response, puzzleId, isCorrect } = req.body;
 
-// Handle Google Login
-function handleLogin(response) {
-    // Get user details from the response if needed
-    const userInfo = jwt_decode(response.credential); // Optional: Decode JWT to get user info
-    console.log(userInfo);
+  // Find the user by email
+  const user = await db.collection('users').findOne({ email });
 
-    // Hide login container
-    document.getElementById("login-container").classList.add("hidden");
-
-    // Show carousel container
-    document.getElementById("carousel-container").classList.remove("hidden");
-}
-
-
-// Handle Puzzle Answer Submission
-ddocument.getElementById("puzzle-form").addEventListener("submit", function (event) {
-    event.preventDefault();
-
-    const userAnswer = document.getElementById("answer").value.trim();
-    const correctAnswer = "42"; // Example correct answer
-
-    // Display feedback
-    const feedback = document.getElementById("feedback");
-    if (userAnswer === correctAnswer) {
-        feedback.textContent = "Correct! Well done.";
-        feedback.classList.add("text-green-500");
+  if (!user) {
+    // If user doesn't exist, create a new user
+    await db.collection('users').insertOne({
+      name,
+      email,
+      puzzlesSolved: isCorrect ? 1 : 0,
+      responses: [
+        {
+          puzzleId,
+          response,
+          attempts: 1,
+          isCorrect
+        }
+      ]
+    });
+  } else {
+    // Update existing user
+    const puzzle = user.responses.find(r => r.puzzleId === puzzleId);
+    if (puzzle) {
+      puzzle.attempts++;
+      puzzle.isCorrect = isCorrect;
     } else {
-        feedback.textContent = "Wrong answer. Try again.";
-        feedback.classList.add("text-red-500");
+      user.responses.push({
+        puzzleId,
+        response,
+        attempts: 1,
+        isCorrect
+      });
     }
+    if (isCorrect) user.puzzlesSolved++;
 
-    // Move to the feedback slide
-    const carousel = new bootstrap.Carousel(document.getElementById("carouselExample"));
-    carousel.next();
+    // Update the user in the database
+    await db.collection('users').updateOne({ email }, { $set: user });
+  }
+
+  res.send({ success: true });
 });
 
-
-const { OAuth2Client } = require('google-auth-library');
-const client = new OAuth2Client('652027832174-7bifdli2ipr0nv98o2uvns3b9q4jie7j.apps.googleusercontent.com');
-
-app.post('/auth/callback', async (req, res) => {
-    const token = req.body.credential; // Get the token from the client
-    try {
-        const ticket = await client.verifyIdToken({
-            idToken: token,
-            audience: '652027832174-7bifdli2ipr0nv98o2uvns3b9q4jie7j.apps.googleusercontent.com',
-        });
-        const payload = ticket.getPayload();
-        const userId = payload['sub']; // Unique Google user ID
-        const email = payload['email'];
-        const name = payload['name'];
-
-        // Store or process user information
-        res.status(200).send({ userId, email, name });
-    } catch (error) {
-        res.status(400).send('Invalid Token');
-    }
+// Get leaderboard API
+app.get('/leaderboard', async (req, res) => {
+  const leaderboard = await db.collection('users').find().sort({ puzzlesSolved: -1 }).toArray();
+  res.send(leaderboard);
 });
+
+// Start server
+app.listen(3000, () => {
+  console.log('Server is running on http://localhost:3000');
+});
+
+app.get('/api/leaderboard', async (req, res) => {
+    const leaderboard = await getLeaderboard();
+    res.json(leaderboard);
+  });
+  
