@@ -1,116 +1,141 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Puzzles 2 Puzzle U</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://cdn.tailwindcss.com"></script>  
-    <!-- fonts --> 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="./styles/styles.css">
-    <link rel="stylesheet" href="./styles/fonts.css"> 
-    <script src="./scripts/script.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mathematics Association - BITS Pilani</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"> 
+  <link rel="stylesheet" href="./styles.css">
 </head>
-<body class="container lato-regular" style="padding: 0; margin: 0;">
-    <div class="px-5 py-4 puzzles-navbar">
-        <nav class="flex justify-between items-center border-black border-b-4 py-3">
-            <!-- Logo Section -->
-            <div class="flex">
-                <div class="border-sky-400 border-2 rounded p-1 w-auto">
-                    <img src="./assets/massocicon.jpg" alt="Logo" class="h-8 w-8">
-                </div>
-                <!-- Title Section -->
-                <div>
-                    <a href="puzzles.html" class="text-4xl transition hover:text-green-800 mx-4 merriweather-regular">
-                        Puzzles 2 Puzzle U
-                    </a>
-                </div>
-            </div>
-    
-            <!-- Desktop Navigation Links -->
-            <div class="hidden md:block">
-                <ul class="flex space-x-6 text-sm">
-                    <li><a href="index.html" class="hover:text-sky-400 transition">Home</a></li>
-                    <li><a href="verticals.html" class="hover:text-sky-400 transition">Verticals</a></li>
-                    <li><a href="contact.html" class="hover:text-sky-400 transition">Contact</a></li>
-                </ul>
-            </div>
-    
-            <!-- Burger Menu for Small Screens -->
-            <div class="block md:hidden">
-                <button id="menu-toggle" class="text-xl hover:text-sky-400">
-                    &#9776;
-                </button>
-            </div>
-        </nav>
-    
-        <!-- Dropdown Menu for Small Screens -->
-        <div id="menu" class="hidden flex-col bg-slate-700 lato-bold text-white space-y-2 p-4 md:hidden">
-            <a href="index.html" class="hover:text-sky-400">Home</a>
-            <a href="verticals.html" class="hover:text-sky-400">Verticals</a>
-            <a href="contact.html" class="hover:text-sky-400">Contact</a>
+<body class="bg-light">
+  <!-- Hero Wrapper -->
+  <div class="hero-wrapper">
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container">
+        <div class="icon-banner"> 
+          <img src="./assets/massocicon.jpg" alt="" class="icon">
+          <a class="navbar-brand" href="#">Mathematics Association BITS Pilani</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+          </button>
         </div>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+            <li class="nav-item"><a class="nav-link" href="#events">Events</a></li>
+            <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="container">
+        <h1>Welcome to the Mathematics Association</h1>
+        <p>Fostering the love for mathematics at BITS Pilani, Pilani campus.</p>
+        <a href="#about" class="btn btn-primary btn-lg mt-4">Learn More</a>
+      </div>
+    </section>
+  </div>
+
+  <!-- About Us Section -->
+  <section id="about" class="py-5 my-4 bg-white">
+    <div class="container">
+      <h1 class="section-title text-center">About Us</h1>
+      <p class="text-center text-muted fs-5">The Mathematics Association at BITS Pilani is a vibrant community of students and faculty who share a passion for mathematics. We organize workshops, guest lectures, and competitions to foster mathematical thinking and problem-solving skills. Join us to explore the beauty of numbers and logic!</p>
+    </div>
+  </section>
+
+  <!-- Events Section -->
+  <section id="events" class="my-4 bg-white">
+    <div class="events-title"> 
+      <h1 class="my-4">Our Events</h1>
+    </div>
+    <div id="eventsCarousel" class="carousel slide">
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <div class="card d-flex flex-row">
+            <div class="card-body d-flex flex-column justify-content-center">
+              <h5 class="card-title fw-bold fs-2">Sherlock vs Moriarty - A Treasure Hunt</h5>
+              <p class="card-text">An exciting treasure hunt where teams race to solve clues and discover hidden secrets around the campus!</p>
+            </div>
+            <img src="https://source.unsplash.com/random/300x300" class="card-img-end" alt="Sherlock vs Moriarty" style="height: 100%; object-fit: cover;">
+          </div>
+        </div>
+        <div class="carousel-item">
+          <div class="card d-flex flex-row">
+            <div class="card-body d-flex flex-column justify-content-center">
+              <h5 class="card-title fw-bold fs-2">Annual Mathematics Olympiad - AMO</h5>
+              <p class="card-text">A competitive event that tests mathematical skills, logic, and problem-solving under timed conditions.</p>
+            </div>
+            <img src="https://source.unsplash.com/random/300x300" class="card-img-end" alt="AMO" style="height: 100%; object-fit: cover;">
+          </div>
+        </div>
+        <div class="carousel-item">
+          <div class="card d-flex flex-row">
+            <div class="card-body d-flex flex-column justify-content-center">
+              <h5 class="card-title fw-bold fs-2">Integration Bee</h5>
+              <p class="card-text">An event where participants race to solve integration problems and compete to become the "Integration Champion"!</p>
+            </div>
+            <img src="https://source.unsplash.com/random/300x300" class="card-img-end" alt="Integration Bee" style="height: 100%; object-fit: cover;">
+          </div>
+        </div>
+        <div class="carousel-item">
+          <div class="card d-flex flex-row">
+            <div class="card-body d-flex flex-column justify-content-center">
+              <h5 class="card-title fw-bold fs-2">Gambling Mathematics</h5>
+              <p class="card-text">Explore the math behind gambling odds and strategies in a series of engaging activities and games.</p>
+            </div>
+            <img src="https://source.unsplash.com/random/300x300" class="card-img-end" alt="Gambling Mathematics" style="height: 100%; object-fit: cover;">
+          </div>
+        </div>
+        <div class="carousel-item">
+          <div class="card d-flex flex-row">
+            <div class="card-body d-flex flex-column justify-content-center">
+              <h5 class="card-title fw-bold fs-2">Workshops</h5>
+              <p class="card-text">Attend workshops on various mathematical topics and techniques to enhance your understanding and skills.</p>
+            </div>
+            <img src="https://source.unsplash.com/random/300x300" class="card-img-end" alt="Workshops" style="height: 100%; object-fit: cover;">
+          </div>
+        </div>
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#eventsCarousel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#eventsCarousel" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
     </div>    
+  </section>
 
-    <main class="container px-5 py-4" style="padding: 0; margin: 0;"> 
-        <div class="container flex flex-col md:flex-row md:items-center my-5 rounded-xl border-4 border-black mx-0 my-0 px-0"> 
-            <div class="container py-10 w-full flex flex-col md:w-2/4"> 
-                <h2 class="text-4xl mb-4 merriweather-regular-italic"> 
-                    Puzzle Title
-                </h2> 
-                <p class="text-base mt-4">  
-                    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Itaque totam, minus aspernatur eius suscipit distinctio error minima deleniti sed sequi ducimus dolor architecto quia aliquid exercitationem fugiat expedita hic iure qui, harum nesciunt quis est? Tempore deserunt id iure debitis.
-                </p>
-            </div> 
-            <div class="w-auto mr-0">
-                <img src="https://picsum.photos/500" class="w-full"> 
-            </div>
-            
-        </div> 
-
-        <div id="login-container" class="flex justify-center items-center">
-            <div id="g_id_onload"
-                data-client_id="652027832174-7bifdli2ipr0nv98o2uvns3b9q4jie7j.apps.googleusercontent.com"
-                data-callback="handleLogin"
-                data-auto_prompt="false">
-            </div>
-            <div class="g_id_signin"
-                data-type="standard"
-                data-size="large">
-            </div>
+  <!-- Contact Section -->
+  <section id="contact" class="py-5">
+    <div class="container">
+      <h2 class="section-title text-center">Contact Us</h2>
+      <p class="text-center text-muted">We'd love to hear from you! Feel free to reach out with your questions, ideas, or suggestions.</p>
+      <form>
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <input type="text" class="form-control" placeholder="Your Name" required>
+          </div>
+          <div class="col-md-6 mb-3">
+            <input type="email" class="form-control" placeholder="Your Email" required>
+          </div>
         </div>
-        
-        <div id="carousel-container" class="hidden">
-            <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
-                <div class="carousel-inner">
-                    <!-- Slide 1: Puzzle Form -->
-                    <div class="carousel-item active">
-                        <div class="container text-center">
-                            <h2>Enter Your Answer</h2>
-                            <form id="puzzle-form">
-                                <label for="answer">Your Answer:</label>
-                                <input type="text" id="answer" class="border-black border-2 rounded" required>
-                                <button type="submit" class="btn btn-primary mt-3">Submit</button>
-                            </form>
-                        </div>
-                    </div>
-                    <!-- Slide 2: Feedback -->
-                    <div class="carousel-item">
-                        <div class="container text-center" id="feedback-container">
-                            <h2 id="feedback"></h2>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>        
-    </main>
+        <div class="mb-3">
+          <textarea class="form-control" rows="4" placeholder="Your Message" required></textarea>
+        </div>
+        <div class="text-center">
+          <button type="submit" class="btn btn-primary btn-lg">Send Message</button>
+        </div>
+      </form>
+    </div>
+  </section>
 
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- Google Sign-In Script -->
-    <script src="https://accounts.google.com/gsi/client" async defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
